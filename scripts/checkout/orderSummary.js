@@ -5,6 +5,8 @@ import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js'; /
 
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
 
+import { renderPaymentSummary } from './paymentSummary.js';
+
 
 //check how to use the dayjs library in official website: https://day.js.org/
 const today = dayjs(); //get current date
@@ -127,6 +129,7 @@ export function rendorOrderSummary(){
 
         container.remove(); // removes from DOM
 
+        renderPaymentSummary();
       })
     });
 
@@ -136,6 +139,8 @@ export function rendorOrderSummary(){
         const {productId, deliveryOptionId} = element.dataset; 
       updateDeliveryOption(productId, deliveryOptionId);
       rendorOrderSummary();
+        renderPaymentSummary();
+      
       });
     });
   }
