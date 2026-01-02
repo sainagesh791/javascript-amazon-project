@@ -1,7 +1,9 @@
-const cart = {
+function Cart(localStorageKey){
+  const cart = {
    cartItems : undefined,
+
    loadFromStorage() {
-  this.cartItems = JSON.parse(localStorage.getItem('cart'))
+  this.cartItems = JSON.parse(localStorage.getItem(localStorageKey));
 
       if(!this.cartItems){
         this.cartItems = [{
@@ -17,7 +19,7 @@ const cart = {
       }
       },
   saveToStorage(){
-  localStorage.setItem('cart-oop', JSON.stringify(this.cartItems)); //we have to convert to string. because local storage only stores strings
+  localStorage.setItem(localStorageKey, JSON.stringify(this.cartItems)); //we have to convert to string. because local storage only stores strings
   },
 
   addToCart(productId){
@@ -72,8 +74,22 @@ const cart = {
 
 };
 
+return cart;
+}
+
+
+const cart = Cart('cart-oop');
+const businessCart = Cart('cart-business');
+
+
+
 cart.loadFromStorage();
 
+
+businessCart.loadFromStorage();
+
+console.log(cart);
+console.log(businessCart);
 
 
 
